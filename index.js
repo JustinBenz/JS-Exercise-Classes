@@ -133,11 +133,11 @@ class Lambdasian {
         + `grade` receives a `student` object and a `subject` string as arguments and returns '{student.name} receives a perfect score on {subject}'
 */
 class Instructor extends Lambdasian{
-  constructor(obj, student){
+  constructor(obj){
     super(obj);
-    this.specialty = student.specialty;
-    this.favLanguage = student.favLanguage;
-    this.catchPhrase = student.catchPhrase;
+    this.specialty = obj.specialty;
+    this.favLanguage = obj.favLanguage;
+    this.catchPhrase = obj.catchPhrase;
   }
   demo(subject){
     return `Today we are learning about ${subject}`
@@ -146,7 +146,6 @@ class Instructor extends Lambdasian{
     return `${student.name} receives a perfect score on ${subject}`
   }
 }
-
 /*
   TASK 5
     - Write a Student class extending Lambdasian.
@@ -164,20 +163,20 @@ class Instructor extends Lambdasian{
 */
 class Student extends Lambdasian{
   constructor(obj){
-    super(student);
+    super(obj);
     this.previousBackground = obj.previousBackground;
     this.className = obj.className;
     this.favSubjects = obj.favSubjects;
   }
   listSubjects(){
-    return obj.favSubjects.toString();
+    return this.favSubjects.toString();
   }
   PRAssignment(subject){
-    return `${obj.name} has submitted a PR for ${subject}`
+    return `${this.name} has submitted a PR for ${subject}`
 
   }
-  sprintChallenge(){
-
+  sprintChallenge(subject){
+    return `${this.name} has begun sprint challenge on ${subject}`
   }
 }
 
@@ -194,8 +193,18 @@ class Student extends Lambdasian{
         + `standUp` a method that takes in a slack channel and returns `{name} announces to {channel}, @channel standy times!`
         + `debugsCode` a method that takes in a student object and a subject and returns `{name} debugs {student.name}'s code on {subject}`
 */
-class ProjectManager {
-
+class ProjectManager extends Instructor{
+  constructor(pmObj){
+    super(pmObj);
+    this.gradClassName = pmObj.gradClassName;
+    this.favInstructor = pmObj.favInstructor;
+  }
+  standUp(channel){
+    return `${this.name} announces to ${channel}, @channel standy times!`
+  }
+  debugsCode(studObj, subject){
+    return `${this.name} debugs ${studObj.name}'s code on ${subject}`
+  }
 }
 
 /*
